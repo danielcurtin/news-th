@@ -22,7 +22,17 @@ const App = () => {
 
   return (
     <Switch>
-
+      <Route exact path='/' render={() => {
+        return (
+          <main>
+            <header>
+              <h1 className='news'>News</h1>
+              <Search />
+            </header>
+            <Articles />
+          </main>
+        );
+      }}/>
     </Switch>
   );
 };
