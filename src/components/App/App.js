@@ -29,7 +29,7 @@ const App = () => {
               <h1 className='news'>News</h1>
               <Search />
             </header>
-            <Articles />
+            <Articles articles={topNews}/>
           </main>
         );
       }}/>

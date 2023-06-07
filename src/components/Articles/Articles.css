@@ -1,5 +1,7 @@
 .articles {
-  border: 1px solid red;
-  box-sizing: border-box;
   min-height: 70%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 5%;
 }
