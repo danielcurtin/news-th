@@ -8,8 +8,18 @@ import Articles from '../Articles/Articles';
 import ArticleInfo from '../ArticleInfo/ArticleInfo';
 
 import { getNews } from '../../api-calls';
+import mockData from '../../mock-data';
 
 const App = () => {
+  const [topNews, setTopNews] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    setTopNews(mockData);
+    // getNews()
+    // .then(data => data.status === 'ok' ? setTopNews(data.articles) : setError(data.message));
+  }, []);
+
   return (
     <Switch>
 
