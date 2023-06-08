@@ -7,19 +7,34 @@ import Search from '../Search/Search';
 import Articles from '../Articles/Articles';
 import ArticleInfo from '../ArticleInfo/ArticleInfo';
 
-import { getNews } from '../../api-calls';
+import { getNews, searchNews } from '../../api-calls';
 import mockData from '../../mock-data';
 
 const App = () => {
   const [news, setNews] = useState([]);
+  const [search, setSearch] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searched, setSearched] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    
     setNews(mockData.map((article, index) => ({...article, id: index})));
     // getNews()
-    // .then(data => data.status === 'ok' ? setNews(data.articles) : setError(data.message));
+    // .then(data => data.status === 'ok' ? setNews(data.articles.map((article, index) => ({...article, id: index}))) : setError(data.message));
   }, []);
+
+  const handleSearch = searchTerm => {
+    setSearched(true);
+    setSearchTerm(searchTerm);
+    searchNews(searchTerm)
+    .then(data => data.status === 'ok' ? setSearch(data.articles.map((article, index) => ({...article, id: index}))) : setError(data.message));
+  };
+
+  const resetSearch = () => {
+    setSearch([]);
+    setSearchTerm('');
+    setSearched(false);
+  };
 
   return (
     <Switch>
@@ -27,15 +42,22 @@ const App = () => {
         return (
           <main>
             <header>
-              <NavLink to='/' className='news'>News</NavLink>
-              <Search />
+              <h1 className='news' onClick={(resetSearch)}>News</h1>
+              <h2>{searched ? `Results for: "${searchTerm}"` : 'Top Stories'}</h2>
+              <Search handleSearch={handleSearch}/>
             </header>
-            <Articles articles={news}/>
+            <Articles articles={searched ? search : news}/>
           </main>
         );
       }}/>
       <Route exact path='/article/:id' render={({ match }) => {
-        const article = news.find(article => article.id === Number(match.params.id))
+        let article;
+
+        if (!searched) {
+          article = news.find(article => article.id === Number(match.params.id));
+        } else {
+          article = search.find(article => article.id === Number(match.params.id));
+        };
         
         return (
         <main>

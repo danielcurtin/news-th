@@ -27,6 +27,8 @@
 
 .article-card > h3 {
   color: grey;
+  max-width: 95%;
+  overflow-wrap: break-word;
 }
 
 .article-card > p {
