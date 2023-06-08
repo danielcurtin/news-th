@@ -6,11 +6,11 @@ const Search = ({ handleSearch }) => {
   
   return (
     <div>
-      <input type='text' className='search' value={search} onChange={(e) => setSearch(e.target.value)}></input>
+      <input type='text' className='search' value={search} aria-label='article search bar' placeholder='Search' onChange={(e) => setSearch(e.target.value)}></input>
       <button className='search' onClick={() => {
         handleSearch(search)
         setSearch('');
-        }}>Search</button>
+      }}>Search</button>
     </div>
   );
 };
