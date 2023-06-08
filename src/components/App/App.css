@@ -20,3 +20,9 @@ header {
   font-size: 4rem;
   cursor: pointer;
 }
+
+.detail-date {
+  align-self: center;
+  font-size: 2rem;
+  color: grey;
+}

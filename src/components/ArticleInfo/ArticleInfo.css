@@ -1,0 +1,36 @@
+.article-info {
+  height: 90%;
+  width: 100%;
+  display: flex;
+}
+
+.article-info > img {
+  height: 100%;
+  width: 50%;
+  object-fit: cover;
+}
+
+.article-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.article-details > h2 {
+  max-width: 90%;
+  font-size: 2rem;
+}
+
+.article-details > h3 {
+  color: grey;
+}
+
+.article-details > p {
+  min-height: 50%;
+}
+
+.article-details > a {
+  margin-bottom: 5%;
+}
