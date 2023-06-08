@@ -8,7 +8,6 @@ import Articles from '../Articles/Articles';
 import ArticleInfo from '../ArticleInfo/ArticleInfo';
 
 import { getNews, searchNews } from '../../api-calls';
-import mockData from '../../mock-data';
 
 const App = () => {
   const [news, setNews] = useState([]);
@@ -18,9 +17,8 @@ const App = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setNews(mockData.map((article, index) => ({...article, id: index})));
-    // getNews()
-    // .then(data => data.status === 'ok' ? setNews(data.articles.map((article, index) => ({...article, id: index}))) : setError(data.message));
+    getNews()
+    .then(data => data.status === 'ok' ? setNews(data.articles.map((article, index) => ({...article, id: index}))) : setError(data.message));
   }, []);
 
   const handleSearch = searchTerm => {
@@ -46,7 +44,7 @@ const App = () => {
               <h2>{searched ? `Results for: "${searchTerm}"` : 'Top Stories'}</h2>
               <Search handleSearch={handleSearch}/>
             </header>
-            <Articles articles={searched ? search : news}/>
+            <Articles articles={searched ? search : news} error={error}/>
           </main>
         );
       }}/>
