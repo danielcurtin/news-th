@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, useHistory } from 'react-router-dom';
 
 import Search from '../Search/Search';
 import Articles from '../Articles/Articles';
@@ -15,8 +15,10 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searched, setSearched] = useState(false);
   const [error, setError] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
+    if (!news.length) history.push('/');
     getNews()
     .then(data => data.status === 'ok' ? setNews(data.articles.map((article, index) => ({...article, id: index}))) : setError(data.message));
   }, []);
@@ -55,6 +57,11 @@ const App = () => {
           article = news.find(article => article.id === Number(match.params.id));
         } else {
           article = search.find(article => article.id === Number(match.params.id));
+        };
+
+        if (!article) {
+          history.push('/');
+          return;
         };
         
         return (
