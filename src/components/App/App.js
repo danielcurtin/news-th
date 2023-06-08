@@ -42,7 +42,7 @@ const App = () => {
         return (
           <main>
             <header>
-              <h1 className='news' onClick={(resetSearch)}>News</h1>
+              <h1 className='news' onClick={(resetSearch)} tabIndex={0}>News</h1>
               <h2>{searched ? `Results for: "${searchTerm}"` : 'Top Stories'}</h2>
               <Search handleSearch={handleSearch}/>
             </header>
@@ -67,7 +67,7 @@ const App = () => {
         return (
         <main>
           <header>
-            <NavLink to='/' className='news'>News</NavLink>
+            <NavLink to='/' className='news' tabIndex={0}>News</NavLink>
             <h2 className='detail-date'>{`${article.publishedAt[5]}${article.publishedAt[6]}/${article.publishedAt[8]}${article.publishedAt[9]}/${article.publishedAt[0]}${article.publishedAt[1]}${article.publishedAt[2]}${article.publishedAt[3]}`}</h2>
           </header>
           <ArticleInfo article={article}/>
