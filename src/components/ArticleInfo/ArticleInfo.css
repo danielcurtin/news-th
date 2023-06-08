@@ -2,6 +2,7 @@
   height: 90%;
   width: 100%;
   display: flex;
+  gap: 1rem;
 }
 
 .article-info > img {
@@ -25,12 +26,14 @@
 
 .article-details > h3 {
   color: grey;
+  max-width: 95%;
+  overflow-wrap: break-word;
 }
 
-.article-details > p {
+.article-content {
   min-height: 50%;
 }
 
-.article-details > a {
+.article-link {
   margin-bottom: 5%;
 }
