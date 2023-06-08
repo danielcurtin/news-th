@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 
 import Search from '../Search/Search';
 import Articles from '../Articles/Articles';
@@ -11,13 +11,14 @@ import { getNews } from '../../api-calls';
 import mockData from '../../mock-data';
 
 const App = () => {
-  const [topNews, setTopNews] = useState([]);
+  const [news, setNews] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setTopNews(mockData);
+    
+    setNews(mockData.map((article, index) => ({...article, id: index})));
     // getNews()
-    // .then(data => data.status === 'ok' ? setTopNews(data.articles) : setError(data.message));
+    // .then(data => data.status === 'ok' ? setNews(data.articles) : setError(data.message));
   }, []);
 
   return (
@@ -26,11 +27,24 @@ const App = () => {
         return (
           <main>
             <header>
-              <h1 className='news'>News</h1>
+              <NavLink to='/' className='news'>News</NavLink>
               <Search />
             </header>
-            <Articles articles={topNews}/>
+            <Articles articles={news}/>
           </main>
+        );
+      }}/>
+      <Route exact path='/article/:id' render={({ match }) => {
+        const article = news.find(article => article.id === Number(match.params.id))
+        
+        return (
+        <main>
+          <header>
+            <NavLink to='/' className='news'>News</NavLink>
+            <h2 className='detail-date'>{`${article.publishedAt[5]}${article.publishedAt[6]}/${article.publishedAt[8]}${article.publishedAt[9]}/${article.publishedAt[0]}${article.publishedAt[1]}${article.publishedAt[2]}${article.publishedAt[3]}`}</h2>
+          </header>
+          <ArticleInfo article={article}/>
+        </main>
         );
       }}/>
     </Switch>
