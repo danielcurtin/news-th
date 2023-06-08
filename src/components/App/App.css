@@ -14,6 +14,7 @@ header {
   align-items: flex-end;
   margin-top: 2%;
   margin-bottom: 2%;
+  text-align: center;
 }
 
 .news {
@@ -21,10 +22,23 @@ header {
   cursor: pointer;
   text-decoration: none;
   color: black;
+  font-weight: bold;
 }
 
 .detail-date {
   align-self: center;
   font-size: 2rem;
   color: grey;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    flex-flow: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .news {
+    font-size: 5rem;
+  }
 }

@@ -34,3 +34,11 @@
 .article-card > p {
   font-size: .9rem;
 }
+
+@media screen and (max-width: 320px) {
+  .article-card {
+    height: 417px;
+    width: 250px;
+
+  }
+}
