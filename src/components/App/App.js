@@ -44,7 +44,7 @@ const App = () => {
               <h2>{searched ? `Results for: "${searchTerm}"` : 'Top Stories'}</h2>
               <Search handleSearch={handleSearch}/>
             </header>
-            <Articles articles={searched ? search : news}/>
+            <Articles articles={searched ? search : news} error={error}/>
           </main>
         );
       }}/>
