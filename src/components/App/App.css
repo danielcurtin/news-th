@@ -19,6 +19,8 @@ header {
 .news {
   font-size: 4rem;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .detail-date {

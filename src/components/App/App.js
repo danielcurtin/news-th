@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 
 import Search from '../Search/Search';
 import Articles from '../Articles/Articles';
@@ -27,7 +27,7 @@ const App = () => {
         return (
           <main>
             <header>
-              <h1 className='news'>News</h1>
+              <NavLink to='/' className='news'>News</NavLink>
               <Search />
             </header>
             <Articles articles={news}/>
@@ -40,12 +40,12 @@ const App = () => {
         return (
         <main>
           <header>
-            <h1 className='news'>News</h1>
+            <NavLink to='/' className='news'>News</NavLink>
             <h2 className='detail-date'>{`${article.publishedAt[5]}${article.publishedAt[6]}/${article.publishedAt[8]}${article.publishedAt[9]}/${article.publishedAt[0]}${article.publishedAt[1]}${article.publishedAt[2]}${article.publishedAt[3]}`}</h2>
           </header>
           <ArticleInfo article={article}/>
         </main>
-        ) 
+        );
       }}/>
     </Switch>
   );
